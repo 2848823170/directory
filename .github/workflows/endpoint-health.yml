@@ -23,12 +23,14 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "22"
+          # Newest 22.x, so security releases apply even when the runner caches an older one.
+          check-latest: true
 
       - name: Check all listings
         id: check
