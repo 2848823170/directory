@@ -22,17 +22,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # pnpm must be installed before setup-node, because setup-node's
       # pnpm cache looks up the pnpm store path.
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "22"
+          # Newest 22.x, so security releases apply even when the runner caches an older one.
+          check-latest: true
           cache: "pnpm"
 
       - name: Install dependencies
@@ -54,12 +56,14 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "22"
+          # Newest 22.x, so security releases apply even when the runner caches an older one.
+          check-latest: true
 
       - name: Load base directory.json
         env:
